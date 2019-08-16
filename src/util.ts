@@ -18,10 +18,18 @@ export async function sleep(millis: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, millis))
 }
 
+
+
+/**
+ * @deprecated
+ */
 export function logOK(message?: any): void {
   console.log('\x1b[32m%s\x1b[0m', message)
 }
 
+/**
+ * @deprecated
+ */
 export function logError(message?: any): void {
   console.log('\x1b[31m%s\x1b[0m', message)
 }
