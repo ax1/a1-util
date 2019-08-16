@@ -11,4 +11,5 @@ The library is intended to be kept as small as possible for ever. This is not a 
 - **execute(command):** execute a command like as in the terminal but 1-returns promise and 2-stderr is treated as exception (and therefore, thrown) 
 
 - **sleep(millis):** non-blocking delay in milliseconds.
- 
+
+- **log(type,message):** pretty-print logs with a unicode colored symbol as prefix. Types ['ok', 'error']
