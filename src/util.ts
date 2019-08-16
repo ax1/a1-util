@@ -14,6 +14,10 @@ export async function execute(command: string): Promise<string> {
   return stdout.toString()
 }
 
+export async function sleep(millis: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, millis))
+}
+
 export function logOK(message?: any): void {
   console.log('\x1b[32m%s\x1b[0m', message)
 }
