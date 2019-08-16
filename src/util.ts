@@ -20,7 +20,7 @@ export async function sleep(millis: number): Promise<void> {
 
 export function log(type: string, message?: any): void {
   const t = type.toLowerCase ? type.toLowerCase() : ''
-  const prefix = type == 'ok' ? '\x1b[32m%s\x1b[0m' : type == 'error' ? '\x1b[31m%s\x1b[0m' : ''
+  const prefix = t == 'ok' ? '\x1b[32m%s\x1b[0m' : t == 'error' ? '\x1b[31m%s\x1b[0m' : ''
   console.log(prefix, message)
 }
 
