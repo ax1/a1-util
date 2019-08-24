@@ -1,17 +1,24 @@
 import { promisify } from 'util'
-import { exec as node_exec } from 'child_process'
-const exec = promisify(node_exec)
+import { exec } from 'child_process'
+const execPromise = promisify(exec)
 
 /**
  * Generic call to an external process (ie: calling an executable file).
  * Use with CAUTION. Check or sanitize the input (otherwise someone could perform rogue commands by adding data to the expected input string ).
  * If stderr but exit was 0, the response is treated as Error
- * @param {Promise<string>} command The instruction typed in the same way as typed in a terminal window. Examples: "ls -la | grep node" or "cat file.txt"  
+ * Detached mode is automatically detected, but the stdout is lost as well. Example `sleep 10 &`
+ * @param {string} command The instruction typed in the same way as typed in a terminal window. Examples: "ls -la | grep node" or "cat file.txt"  
  */
 export async function execute(command: string): Promise<string> {
-  const { stdout, stderr } = await exec(command)
-  if (stderr.toString()) throw new Error(stderr.toString())
-  return stdout.toString()
+  const unref = command.endsWith('&') // 'detached' symbol in command is not handle by node/libuv, use unref()
+  if (unref) {
+    exec(command).unref()
+    return ''
+  } else {
+    const { stdout, stderr } = await execPromise(command)
+    if (stderr.toString()) throw new Error(stderr.toString())
+    return stdout.toString()
+  }
 }
 
 export async function sleep(millis: number): Promise<void> {
