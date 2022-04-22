@@ -1,5 +1,5 @@
-const assert = require('assert')
-const util = require('../lib/util')
+import assert from 'assert'
+import * as util from '../lib/util.js'
 
 async function test() {
   await testExecute()

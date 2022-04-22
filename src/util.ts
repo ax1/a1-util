@@ -27,6 +27,12 @@ export async function execute(command: string, options?: executeOptions): Promis
   return '0'
 }
 
+/**
+ * Async sleep. This function will be deprecad in the future 
+ * because it can be performed by timers.timeout() added in V15 https://nodejs.org/api/timers.html#timers_timers_promises_api
+ * @param millis 
+ * @returns 
+ */
 export async function sleep(millis: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, millis))
 }
