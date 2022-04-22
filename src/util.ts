@@ -38,8 +38,8 @@ export async function sleep(millis: number): Promise<void> {
 }
 
 export function log(type: string, message?: any): void {
-  const t = type.toLowerCase ? type.toLowerCase() : ''
-  const prefix = t == 'ok' ? '\x1b[32m%s\x1b[0m' : t == 'error' ? '\x1b[31m%s\x1b[0m' : ''
+  const t = (type && type.toLowerCase) ? type.toLowerCase() : ''
+  const prefix = (t == 'ok' || t == 'info') ? '\x1b[32m%s\x1b[0m' : t == 'error' ? '\x1b[31m%s\x1b[0m' : ''
   console.log(prefix, message)
 }
 
@@ -49,6 +49,7 @@ export function printMatrix(matrix: Array<Array<any>>) {
 
 /**
  * @deprecated
+ * Use log(type, msg) instead
  */
 export function logOK(message?: any): void {
   console.log('\x1b[32m%s\x1b[0m', message)
@@ -56,6 +57,7 @@ export function logOK(message?: any): void {
 
 /**
  * @deprecated
+ * Use log(type, msg) instead
  */
 export function logError(message?: any): void {
   console.log('\x1b[31m%s\x1b[0m', message)

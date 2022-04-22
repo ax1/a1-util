@@ -4,6 +4,7 @@ import * as util from '../lib/util.js'
 async function test() {
   await testExecute()
   await testSleep()
+  testLog()
 }
 
 async function testExecute() {
@@ -17,5 +18,11 @@ async function testSleep() {
   console.log('2')
 }
 
-test().catch(err => util.logError(err))
+function testLog() {
+  util.log('error', 'this is an error')
+  util.log('info', 'this is an info')
+  util.log(null, 'this is whatever log data')
+}
+
+test().catch(err => util.log('error', err))
 

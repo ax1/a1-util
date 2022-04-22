@@ -12,15 +12,23 @@ declare type executeOptions = {
  * @param {executeOptions} options  unref: makes stdio and process to be independent completely
  */
 export declare function execute(command: string, options?: executeOptions): Promise<string>;
+/**
+ * Async sleep. This function will be deprecad in the future
+ * because it can be performed by timers.timeout() added in V15 https://nodejs.org/api/timers.html#timers_timers_promises_api
+ * @param millis
+ * @returns
+ */
 export declare function sleep(millis: number): Promise<void>;
 export declare function log(type: string, message?: any): void;
 export declare function printMatrix(matrix: Array<Array<any>>): string;
 /**
  * @deprecated
+ * Use log(type, msg) instead
  */
 export declare function logOK(message?: any): void;
 /**
  * @deprecated
+ * Use log(type, msg) instead
  */
 export declare function logError(message?: any): void;
 export {};
