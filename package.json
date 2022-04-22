@@ -1,6 +1,6 @@
 {
   "name": "a1-util",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "General usage functions library. The aim of the library is to keep as small as possible but avoid the user link a ton of one-line function modules dependency.",
   "main": "lib/util.js",
   "scripts": {
