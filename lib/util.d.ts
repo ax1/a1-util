@@ -19,6 +19,12 @@ export declare function execute(command: string, options?: executeOptions): Prom
  * @returns
  */
 export declare function sleep(millis: number): Promise<void>;
+/**
+ * ESM replacement for __dirname.
+ * When using bundlers, the dirname can be a .js file, so this function also patches it.*
+ * @returns {string}
+ */
+export declare function dirname(): typeof dirname;
 export declare function log(type: string, message?: any): void;
 export declare function printMatrix(matrix: Array<Array<any>>): string;
 /**

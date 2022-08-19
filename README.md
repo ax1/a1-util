@@ -12,4 +12,6 @@ The library is intended to be kept as small as possible for ever. This is not a 
 
 - **sleep(millis):** non-blocking delay in milliseconds.
 
+- **dirname():** ESM alternative to _dirname. It also works on bundled files.
+
 - **log(type, message):** pretty-print logs with a unicode colored symbol as prefix. Types ['ok', 'error'].

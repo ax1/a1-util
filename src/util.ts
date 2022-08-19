@@ -1,6 +1,7 @@
 import { promisify } from 'util'
 import { exec, spawn } from 'child_process'
 const execPromise = promisify(exec)
+import { fileURLToPath, URL } from 'url'
 
 type executeOptions = {
   /** detach COMPLETELY by:1-new independent process, 2-stdout stderr are also different than the parent*/
@@ -35,6 +36,17 @@ export async function execute(command: string, options?: executeOptions): Promis
  */
 export async function sleep(millis: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, millis))
+}
+
+/**
+ * ESM replacement for __dirname.
+ * When using bundlers, the dirname can be a .js file, so this function also patches it.* 
+ * @returns {string}
+ */
+export function dirname() {
+  let __dirname = fileURLToPath(new URL('.', import.meta.url))
+  if (__dirname.endsWith('.js')) __dirname = __dirname.substring(0, __dirname.lastIndexOf('/') + 1)
+  return dirname
 }
 
 export function log(type: string, message?: any): void {
